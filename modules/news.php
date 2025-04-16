@@ -1,5 +1,4 @@
 <?php
-echo 'news';
 $id = (int)$_GET['id'];
 $content = file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/data/". $id . '.txt');
 $news = unserialize($content);
@@ -11,7 +10,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php';
 
         <main role="main">
 
-            <!-- Main jumbotron for a primary marketing message or call to action -->
             <div class="jumbotron">
                 <div class="container">
                     <h1 id=$i class="display-3">Новость №  <?=$id?></h1>

@@ -1,15 +1,15 @@
 <?php
 error_reporting(E_ALL);
-session_start();
 ini_set('display_errors', 1);
-if (!empty($_GET['act']) && $_GET['act'] == 'login') {
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/login.php';
-    die();
-}
-if (empty($_SESSION['login'])) {
-    header('Location: /admin/?act=login');
-    die();
-}
+session_start();
+//if (!empty($_GET['act']) && $_GET['act'] == 'login') { //* переход на страницу со входом в админку. сейчас ввод логина и пароля не нужен, все могут редактировать все посты*/
+//    require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/login.php';
+//    die();
+//}
+//if (empty($_SESSION['login'])) {
+//    header('Location: /admin/?act=login');
+//    die();
+//}
 require_once $_SERVER['DOCUMENT_ROOT'] . '/modules/readnews.php';
 if (!empty($_GET['act']) && $_GET['act'] == 'edit') {
     $id = (float)$_GET['id'];
@@ -77,32 +77,24 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php';
     <tr>
          <?php endforeach ?>
     </tbody>
-       
-</table>
-                <form method="post" action="">
+
+                <form method="Post" action="">
                     <input type="hidden" name="id" value="<?php echo $newsItem['id'] ?? 0 ; ?>"/>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Title</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter title" name="title" value="<?php echo $newsItem['title'] ?? ''; ?>">
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else. да да да</small>
+                        <label for="titlename">Заголовок</label>
+                        <input type="text" class="form-control" id="titlename" aria-describedby="emailHelp" placeholder="Введите имя поста..." name="title" value="<?php echo $newsItem['title'] ?? ''; ?>">
                     </div>
                     <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Тело новости????</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="15" name="text"><?php echo $newsItem['text'] ?? ''; ?></textarea>
+                        <label for="content">Содержимое</label>
+                        <textarea class="form-control" id="content" placeholder="Введите текст..." rows="15" name="text"><?php echo $newsItem['text'] ?? ''; ?></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Отправить</button>
                 </form>          
             </div> <!-- /container -->
-        </main>
-
         <footer class="container">
-            <p>&copy; Cumpany 2024-2025</p>
+            <p>&copy; Cumpany форева</p>
         </footer>
-
-        <!-- Bootstrap core JavaScript
-        ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="/js/bootstrap.min.js"></script>
 
     </body>
