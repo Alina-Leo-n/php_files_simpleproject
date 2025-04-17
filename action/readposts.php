@@ -26,8 +26,8 @@ $result = $connection->query("SELECT * FROM posts ORDER BY created_at DESC");
                             <div class="mt-auto">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <a href="ваша_страница.php" role="button" class="btn btn-outline-primary">Удалить</a>
-                                        <a href="ваша_страница.php" role="button" class="btn btn-primary">Править</a>
+                                        <a href="/action/deletepost.php" role="button" class="btn btn-outline-primary">Удалить</a>
+                                        <a href="/action/form.php?id=<?= $post['id'] ?>" role="button" class="btn btn-primary">Править</a>
                                     </div>
                                     <small class="text-muted">
         <?= date('d.m.Y', strtotime($post['created_at'])) ?>

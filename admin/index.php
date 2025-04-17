@@ -82,14 +82,16 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php';
                     <input type="hidden" name="id" value="<?php echo $newsItem['id'] ?? 0 ; ?>"/>
                     <div class="form-group">
                         <label for="titlename">Заголовок</label>
-                        <input type="text" class="form-control" id="titlename" aria-describedby="emailHelp" placeholder="Введите имя поста..." name="title" value="<?php echo $newsItem['title'] ?? ''; ?>">
+                        <input type="text" class="form-control" id="titlename"  placeholder="Введите имя поста..." name="title" value="<?php echo $newsItem['title'] ?? ''; ?>">
                     </div>
                     <div class="form-group">
                         <label for="content">Содержимое</label>
                         <textarea class="form-control" id="content" placeholder="Введите текст..." rows="15" name="text"><?php echo $newsItem['text'] ?? ''; ?></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Отправить</button>
-                </form>          
+                </form>   
+    
+    
             </div> <!-- /container -->
         <footer class="container">
             <p>&copy; Cumpany форева</p>
