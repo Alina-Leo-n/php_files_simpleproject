@@ -1,13 +1,17 @@
 <?php
+session_start();
+echo session_id();
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32)); 
+}
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 require_once 'config.php';
-session_start();
+
 
 $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php';
-?>
+require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php'; ?>
 <body>
     <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/menu.php'; ?>
 
@@ -20,12 +24,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/header.php';
                 <p><a class="btn btn-primary btn-lg" href="/templates/buttonlink.php" role="button">не надо жмать на эту кнопку, она не работает &raquo;</a></p>
             </div>
         </div>
-        <?= require_once $_SERVER['DOCUMENT_ROOT'] . '/action/readposts.php'; 
-    
-    
-    
-    
-    ?>
+        <?= require_once $_SERVER['DOCUMENT_ROOT'] . '/action/readposts.php'; ?>
 
     </main>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

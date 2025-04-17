@@ -3,7 +3,7 @@
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <a class="navbar-brand" href="/index.php">Home </a>
 
-<a class="navbar-brand" href="/admin/form.php">Edit posts </a>
+<a class="navbar-brand" href="/templates/form.php">New post </a>
 
 <!--Поиск-->
             <!--                <form class="form-inline my-2 my-lg-0">

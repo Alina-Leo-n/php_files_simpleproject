@@ -1,8 +1,9 @@
 <?php
 session_start();
-//if (empty($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
-//    die("Ошибка безопасности: неверный CSRF-токен");
-//}
+if (empty($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+    die("Ошибка безопасности: неверный CSRF-токен");
+}
+
 $host = 'localhost';
 $user = 'blog';
 $password = '40>IRnS[';
@@ -40,45 +41,31 @@ if (!empty($errors)) {
         echo "<li>$error</li>";
     }
     echo "</ul>";
-    echo '<a href="/admin/form.php">Вернуться к форме</a>';
+    echo '<a href="/templates/form.php">Вернуться к форме</a>';
     exit();
 }
-
-
 
 $id = $_POST['id'] ?? null;
 $title = $connection->real_escape_string($_POST['title']);
 $content = $connection->real_escape_string($_POST['content']);
 
-// Определяем тип операции
 if ($id) {
-    // Редактирование существующего поста
+    // если редактирование
     $stmt = $connection->prepare("UPDATE posts SET title=?, content=?, updated_at=NOW() WHERE id=?");
     $stmt->bind_param("ssi", $title, $content, $id);
-    $success_message = "Пост успешно обновлен";
 } else {
-    // Создание нового поста
+    // если оздание
     $stmt = $connection->prepare("INSERT INTO posts (title, content) VALUES (?, ?)");
     $stmt->bind_param("ss", $title, $content);
-    $success_message = "Пост успешно создан";
 }
 
-// Выполнение запроса
-if ($stmt->execute()) {
-    $_SESSION['success'] = $success_message;
+if ($stmt->execute()) {     // Выполнение запроса
     header("Location: index.php");
     exit();
 } else {
     $_SESSION['errors'] = ["Ошибка базы данных: " . $connection->error];
     header("Location: " . ($id ? 'savepost.php?id='.$id : 'savepost.php'));
 }
-//$_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-
 $stmt->close();
 $conn->close();
-
-
-
-
-
 ?>
